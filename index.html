@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>pepeenanaparasempre.com</title>
+
+<style>
+
+/* FUNDO COM GIF */
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:white;
+  overflow-x:hidden;
+  background: url("fundo.gif") no-repeat center center fixed;
+  background-size: cover;
+  position:relative;
+  cursor:none; /* esconder cursor original */
+}
+
+/* BOLINHA DO MOUSE */
+.cursor{
+  position:fixed;
+  width:15px;
+  height:15px;
+  background:white;
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 15px white;
+  z-index:9999;
+}
+
+/* CAMADA ROSA */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(-45deg,rgba(255,77,136,0.5),rgba(255,153,204,0.5),rgba(255,102,163,0.5));
+  z-index:-1;
+}
+
+/* ESTRELAS */
+.estrelas{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url("https://i.imgur.com/YKY28eT.png");
+  animation:estrelas 60s linear infinite;
+  z-index:-2;
+  opacity:0.4;
+}
+
+@keyframes estrelas{
+  from{background-position:0 0;}
+  to{background-position:0 1000px;}
+}
+
+/* NOMES */
+.nomes{
+  font-size:60px;
+  margin-top:30px;
+  cursor:pointer;
+  animation: brilho 2s infinite alternate;
+}
+
+@keyframes brilho{
+  from{color:#fff;}
+  to{color:#ff0066;}
+}
+
+.data{font-size:24px;}
+#contador{font-size:20px;}
+#mesversario{font-size:18px;margin-bottom:20px;}
+
+/* BOTÕES */
+.botoes{
+  margin:20px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.botao{
+  background:#1DB954;
+  padding:12px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  color:white;
+  font-size:18px;
+  box-shadow:0 0 15px rgba(0,0,0,0.3);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.botao:hover{ transform:scale(1.1); }
+
+/* CARTAS */
+.cartas{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:80px;
+  margin-top:50px;
+}
+
+.carta{
+  width:320px;
+  height:200px;
+  perspective:1000px;
+  cursor:pointer;
+}
+
+.carta-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+  transform-style:preserve-3d;
+}
+
+.carta.aberta .carta-inner{ transform:rotateY(180deg); }
+
+.carta-frente,.carta-dentro{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:20px;
+  box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.carta-frente{
+  background:#ff4d88;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.carta-dentro{
+  background:white;
+  color:black;
+  transform:rotateY(180deg);
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* CORAÇÕES */
+.coracao{
+  position:fixed;
+  top:-20px;
+  animation:cair 4s linear forwards;
+  font-size:24px;
+}
+
+@keyframes cair{
+  to{transform:translateY(110vh);}
+}
+
+/* FRASE CAINDO */
+.frase{
+  position:fixed;
+  top:-40px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:26px;
+  font-weight:bold;
+  animation:cairFrase 4s linear forwards;
+}
+
+@keyframes cairFrase{
+  to{transform:translate(-50%,110vh);}
+}
+
+/* FINAL */
+.final{
+  margin-top:100px;
+  font-size:22px;
+  opacity:0;
+  transform:translateY(50px);
+  transition:2s;
+}
+
+.final.mostrar{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CACHORRO */
+.dog{
+  position:fixed;
+  bottom:0;
+  font-size:40px;
+  animation:andar 12s linear infinite;
+}
+
+@keyframes andar{
+  0%{ left:-50px; }
+  50%{ left:50%; }
+  100%{ left:100vw; }
+}
+
+.dog.sentar{
+  animation:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<div class="estrelas"></div>
+
+<h1 class="nomes" onclick="alert('Eu te amo minha princesinha 💖')">
+Pepe e Nana 💕
+</h1>
+
+<div class="data">Conheço o amor da minha vida desde 22/05 💕</div>
+<div id="contador"></div>
+<div id="mesversario"></div>
+
+<div class="botoes">
+
+<a class="botao"
+href="https://open.spotify.com/intl-pt/track/00j16DuIL1HPHjjLMNcYX0"
+target="_blank">
+▶️ Nossa música
+</a>
+
+<div class="botao" onclick="explodir()">
+💖 Eu te amo
+</div>
+
+</div>
+
+<div class="cartas">
+
+<div class="carta" onclick="this.classList.toggle('aberta')">
+<div class="carta-inner">
+<div class="carta-frente">💌 Abrir</div>
+<div class="carta-dentro">
+obrigado por fazer meus dias melhores meu amor,<br>
+vai ser eu e voce sempre ❤️
+</div>
+</div>
+</div>
+
+<div class="carta" onclick="this.classList.toggle('aberta')">
+<div class="carta-inner">
+<div class="carta-frente">💌 Abrir</div>
+<div class="carta-dentro">
+minha princesinha desde que te conheci, sabia que era você 💖
+</div>
+</div>
+</div>
+
+<div class="carta" onclick="this.classList.toggle('aberta')">
+<div class="carta-inner">
+<div class="carta-frente">💌 Abrir</div>
+<div class="carta-dentro">
+você é minha paz, eu te amo muito 🤍
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="final" id="final">
+Obrigado por existir na minha vida… 💍
+</div>
+
+<div class="dog" id="dog">🐶</div>
+
+<script>
+
+/* CURSOR SEGUINDO MOUSE */
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",(e)=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+
+/* CONTADOR */
+const inicio=new Date("May 22, 2024 00:00:00");
+
+setInterval(()=>{
+const agora=new Date();
+const diff=agora-inicio;
+
+const dias=Math.floor(diff/(1000*60*60*24));
+const horas=Math.floor((diff/(1000*60*60))%24);
+const minutos=Math.floor((diff/(1000*60))%60);
+const segundos=Math.floor((diff/1000)%60);
+
+contador.innerHTML=
+dias+" dias "+horas+"h "+minutos+"m "+segundos+"s juntos 💕";
+},1000);
+
+/* EXPLOSÃO */
+function explodir(){
+
+for(let i=0;i<40;i++){
+  setTimeout(()=>{
+    const c=document.createElement("div");
+    c.className="coracao";
+    c.innerHTML="💖";
+    c.style.left=Math.random()*100+"vw";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }, i*60);
+}
+
+const f=document.createElement("div");
+f.className="frase";
+f.innerHTML="eu te amo minha princesa 💕";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),4000);
+
+}
+
+/* FINAL */
+window.addEventListener("scroll",()=>{
+if(window.scrollY>200){
+final.classList.add("mostrar");
+}
+});
+
+/* CACHORRO */
+const dog=document.getElementById("dog");
+
+setInterval(()=>{
+dog.classList.add("sentar");
+dog.innerHTML="🐶";
+setTimeout(()=>{
+dog.innerHTML="🐶 🐾";
+setTimeout(()=>{
+dog.innerHTML="🐶";
+dog.classList.remove("sentar");
+},2000);
+},1000);
+},15000);
+
+</script>
+
+</body>
+</html>
